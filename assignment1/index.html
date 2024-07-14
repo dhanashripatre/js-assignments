@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>change content and style</title>
+    <style>
+     .demo{
+          color: purple;
+          font-style: italic;
+     }
+    </style>
+</head>
+<body>
+    <p id="content">this is the content that will be changed after clicking the button</p>
+    <button onclick="changecontent()">click me</button>
+    <script>
+       function changecontent(){
+        var element = document.getElementById("content");
+        element.innerHTML = '<p>This is the updated content.</p>';
+        element.classList.add('demo');
+ 
+       }
+    </script>
+</body>
+</html>

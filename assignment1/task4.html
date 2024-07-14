@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <style>
+        .error {
+            color: rgb(201, 15, 15);
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm" onsubmit="return validateForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <span id="usernameError" class="error"></span><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span id="emailError" class="error"></span><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <span id="passError" class="error"></span><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var isValid = true;//the form is valid initially ,used to track the error
+
+            // Validate username
+            if (username.trim() === '') {
+                document.getElementById('usernameError').textContent = 'Username is required';
+                isValid = false;
+            } else {
+                document.getElementById('usernameError').textContent = '';
+            }
+
+            // Validate email
+            if (email.trim() === '') {
+                document.getElementById('emailError').textContent = 'Email is required';
+                isValid = false;
+            } else {
+                // Simple email format validation using regex
+                var emailRegex = /^[^\d@]+@[^\d@]+\.[^\d@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('emailError').textContent = 'Invalid email format';
+                    isValid = false;
+                } else {
+                    document.getElementById('emailError').textContent = '';
+                }
+            }
+
+            // Validate password
+            if (password.trim() === '') {
+                document.getElementById('passError').textContent = 'Password is required';
+                isValid = false;
+            } else {
+                document.getElementById('passError').textContent = '';
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
